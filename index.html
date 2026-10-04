@@ -3,97 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>اختيار الأصحاب</title>
+<meta name="theme-color" content="#0b1020">
+<title>اختيار الأصحاب — نظام الأدوار</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="bg"><i></i><i></i><i></i><i></i><div class="grid"></div></div>
-
 <main id="app">
-  <section id="home" class="screen active">
-    <div class="brand">
-      <div class="logo">👆</div>
-      <div class="brand-title-wrap">
-        <span class="title-orbit orbit-a"></span>
-        <span class="title-orbit orbit-b"></span>
-        <span class="title-orbit orbit-c"></span>
-        <span class="title-spark">✦</span>
-        <h1>اختيار الأصحاب</h1>
-      </div>
-      <p>حطوا أصابعكم على الشاشة... والاختيار هيكون عشوائي!</p>
-    </div>
 
-    <div class="card">
-      <label>اسم المباراة</label>
-      <input id="matchName" maxlength="30" placeholder="مثلاً: مباراة الجمعة 🔥">
-      <label>عدد اللاعبين</label>
-      <div id="playerCount" class="choices">
-        <button data-count="2">2</button><button data-count="3">3</button>
-        <button data-count="4">4</button><button data-count="5" class="selected">5</button>
-      </div>
-      <label>عدد الجولات</label>
-      <div id="roundCount" class="round-choices">
-        <button data-rounds="5">5</button><button data-rounds="10">10</button>
-        <button data-rounds="15">15</button><button data-rounds="20">20</button><button data-rounds="25">25</button>
-      </div>
-      <div class="game-info">كل إجابة/تنفيذ صحيح = <b>10 نقاط</b> 🏆</div>
-      <button id="startBtn" class="primary">ابدأ المباراة 🚀</button>
+<section id="home" class="screen active">
+  <div class="brand">
+    <div class="logo">🎮</div>
+    <div class="brand-title-wrap">
+      <span class="title-orbit orbit-a"></span><span class="title-orbit orbit-b"></span><span class="title-orbit orbit-c"></span>
+      <span class="title-spark">✦</span><h1>اختيار الأصحاب</h1>
     </div>
-    <footer><span>مبرمج</span><strong>معاذ محمد عبد النبي</strong></footer>
-  </section>
+    <p>كل واحد له دوره — اختار سؤال، تحدي، أو خليك الحكم! 🔥</p>
+  </div>
+  <div class="card setup-card">
+    <label>اسم المباراة</label>
+    <input id="matchName" maxlength="30" placeholder="مثلاً: ليلة الأصحاب 🔥">
+    <label>عدد اللاعبين</label>
+    <div id="playerCount" class="choices"><button data-count="2">2</button><button data-count="3">3</button><button data-count="4">4</button><button data-count="5" class="selected">5</button></div>
+    <label>عدد الجولات</label>
+    <div id="roundCount" class="round-choices"><button data-rounds="1">1</button><button data-rounds="2">2</button><button data-rounds="3" class="selected">3</button><button data-rounds="5">5</button><button data-rounds="10">10</button></div>
+    <div class="game-info">كل جولة = كل لاعب له دور واحد. الإجابة/التنفيذ = <b>+10 نقاط</b> 🏆</div>
+    <button id="startBtn" class="primary">ابدأ المباراة 🚀</button>
+  </div>
+  <div class="safety-note">😳 إحراج اجتماعي قوي ومضحك — بدون أسئلة جنسية أو طلبات خطرة أو كشف معلومات خاصة.</div>
+  <footer><span>مبرمج</span><strong>معاذ محمد عبد النبي</strong></footer>
+</section>
 
-  <section id="players" class="screen">
-    <div class="topbar"><button class="back" data-back="home">←</button><h2 id="playersTitle">اللاعبون</h2></div>
-    <div class="card">
-      <p class="hint">اكتبوا أسماء اللاعبين، وبعدها اضغطوا ابدأ.</p>
-      <div id="nameInputs"></div>
-      <button id="readyBtn" class="primary">جاهزين! 🎮</button>
-    </div>
-  </section>
+<section id="players" class="screen">
+  <div class="topbar"><button class="back" data-back="home">←</button><h2 id="playersTitle">اللاعبون</h2></div>
+  <div class="card">
+    <p class="hint">اكتبوا أسماء اللاعبين، وبعدها تبدأ الأدوار بالترتيب.</p>
+    <div id="nameInputs"></div>
+    <button id="readyBtn" class="primary">جاهزين! 🎮</button>
+  </div>
+</section>
 
-  <section id="touch" class="screen">
-    <div class="touch-head">
-      <div><small id="touchMatch"></small><h2>حطوا الأصابع 👆</h2><small id="roundInfo"></small></div>
-      <button id="resetTouches" class="secondary">إعادة</button>
+<section id="turn" class="screen">
+  <div class="turn-head">
+    <div><small id="turnMatch"></small><div class="turn-round" id="roundInfo"></div></div>
+    <div class="turn-counter" id="turnCounter">الدور 1</div>
+  </div>
+  <div class="turn-card">
+    <div class="turn-crown">👑</div>
+    <span class="turn-label">الدور الآن</span>
+    <h1 id="currentPlayerName">—</h1>
+    <p>يا نجم، اختار أنت بنفسك 👇</p>
+    <div class="mode-grid">
+      <button id="questionBtn" class="mode-btn question-mode"><span>😳</span><b>سؤال محرج</b><small>أقصى إحراج اجتماعي آمن</small></button>
+      <button id="challengeBtn" class="mode-btn challenge-mode"><span>🎯</span><b>تحدي</b><small>متوسط إلى صعب</small></button>
+      <button id="judgeBtn" class="mode-btn judge-mode"><span>👑</span><b>الحُكم</b><small>اختار لاعبًا واحكم عليه</small></button>
     </div>
-    <div id="touchArea" class="touch-area">
-      <div class="touch-message">كل لاعب يحط إصبعه هنا<br><b>ومتشيلوش إيدكم!</b></div>
-    </div>
-    <button id="chooseBtn" class="primary big">اختار! 🎯</button>
-    <div id="touchStatus">الأصابع المسجلة: <b>0</b></div>
-  </section>
+    <button id="scoreDuringBtn" class="secondary full-btn">🏆 عرض النتائج</button>
+  </div>
+</section>
 
-  <section id="result" class="screen">
-    <div class="winner-card">
-      <div class="crown">👑</div><p>الاختيار وقع على</p>
-      <h1 id="winnerName">—</h1>
-      <div class="dot">●</div>
-      <h2 id="challengeType">حكم الجولة</h2>
-      <div class="challenge" id="challengeText">—</div>
-      <div class="answer-title">هل اللاعب أجاب/نفّذ؟</div>
-      <div class="answer-buttons">
-        <button id="successBtn" class="success">✅ أجاب / نفّذ</button>
-        <button id="failBtn" class="fail">❌ لم يجب / لم ينفذ</button>
-      </div>
-      <div id="roundPoints" class="round-points">الجولة = 0 نقاط</div>
-      <div class="result-actions">
-        <button id="newChallengeBtn" class="secondary">حكم/سؤال آخر 🔄</button>
-        <button id="nextRoundBtn" class="primary">الجولة التالية 👆</button>
-        <button id="scoreBtn" class="secondary">🏆 النتائج الآن</button>
-      </div>
-    </div>
-  </section>
+<section id="target" class="screen">
+  <div class="topbar"><button id="backToTurnBtn" class="back">←</button><h2>اختار اللاعب</h2></div>
+  <div class="card target-card">
+    <div class="target-icon">👑</div>
+    <h2><span id="judgeName">—</span> هو الحكم</h2>
+    <p>اختار لاعبًا ثانيًا عشان يكون عليه الحكم والتحدي.</p>
+    <div id="targetButtons" class="target-grid"></div>
+  </div>
+</section>
 
-  <section id="score" class="screen">
-    <div class="topbar"><button class="back" data-back="home">←</button><h2>النتائج</h2></div>
-    <div class="card">
-      <h3 id="scoreMatch"></h3>
-      <div id="finalBanner"></div>
-      <div id="scoreList"></div>
-      <button id="playAgain" class="primary">العبوا تاني 🔥</button>
+<section id="result" class="screen">
+  <div class="winner-card result-card-new">
+    <div class="crown" id="resultIcon">😳</div>
+    <p id="resultRole">الدور</p>
+    <h1 id="winnerName">—</h1>
+    <h2 id="challengeType">سؤال محرج 😳</h2>
+    <div class="challenge" id="challengeText">—</div>
+    <div class="reader-row">
+      <button id="readBtn" class="voice-btn">🔊 اقرأ بصوت</button>
+      <button id="stopReadBtn" class="voice-stop">⏹️ إيقاف</button>
     </div>
-  </section>
+    <div class="answer-title" id="answerTitle">هل أجاب/نفّذ؟</div>
+    <div class="answer-buttons">
+      <button id="successBtn" class="success">✅ أجاب / نفّذ +10</button>
+      <button id="failBtn" class="fail">❌ لم يجب / لم ينفذ</button>
+    </div>
+    <div id="roundPoints" class="round-points">الجولة = 0 نقاط</div>
+    <div class="result-actions">
+      <button id="newChallengeBtn" class="secondary">اختيار جديد 🔄</button>
+      <button id="nextRoundBtn" class="primary">الدور التالي ➡️</button>
+      <button id="scoreBtn" class="secondary">🏆 النتائج</button>
+    </div>
+  </div>
+</section>
+
+<section id="score" class="screen">
+  <div class="topbar"><button class="back" data-back="home">←</button><h2>النتائج</h2></div>
+  <div class="card">
+    <h3 id="scoreMatch"></h3>
+    <div id="finalBanner"></div>
+    <div id="scoreList"></div>
+    <button id="playAgain" class="primary">العبوا تاني 🔥</button>
+  </div>
+</section>
+
 </main>
+<div id="speechStatus" class="speech-status" aria-live="polite"></div>
 <script src="script.js"></script>
 </body>
 </html>
