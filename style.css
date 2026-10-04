@@ -1,0 +1,43 @@
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;font-family:Arial,"Tahoma",sans-serif;background:#05060a;color:#fff}
+body{overflow-x:hidden;touch-action:manipulation}
+button,input{font:inherit}
+.bg{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 50% 0,#19214b 0,#080a13 45%,#020205 100%);z-index:0}
+.bg i{position:absolute;width:120px;height:120px;border-radius:50%;filter:blur(18px);opacity:.25;animation:float 9s ease-in-out infinite}
+.bg i:nth-child(1){background:#6c5ce7;top:8%;left:8%}.bg i:nth-child(2){background:#00d2ff;top:50%;right:5%;animation-delay:2s}
+.bg i:nth-child(3){background:#ff3cac;bottom:5%;left:25%;animation-delay:4s}.bg i:nth-child(4){background:#00ff9d;top:25%;right:35%;animation-delay:6s}
+.grid{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:35px 35px;transform:perspective(500px) rotateX(55deg) scale(1.5);transform-origin:center bottom;opacity:.35}
+@keyframes float{50%{transform:translate(30px,-35px) scale(1.25)}}
+#app{position:relative;z-index:2;width:min(720px,100%);min-height:100vh;margin:auto;padding:18px 14px 30px}
+.screen{display:none;min-height:calc(100vh - 48px);align-items:center;justify-content:center;flex-direction:column;gap:18px}.screen.active{display:flex}
+.brand{text-align:center;padding-top:25px}.logo{font-size:70px;animation:bounce 1.8s infinite}
+@keyframes bounce{50%{transform:translateY(-10px) rotate(5deg)}}
+h1{margin:8px 0;font-size:clamp(30px,8vw,52px)}h2{margin:4px 0}p{color:#cdd3e6;line-height:1.7}
+.card,.winner-card{width:100%;padding:22px;border:1px solid #ffffff18;border-radius:26px;background:#0e1220e8;box-shadow:0 20px 70px #0008;backdrop-filter:blur(14px)}
+label{display:block;margin:12px 0 7px;font-weight:bold}input{width:100%;padding:15px;border-radius:15px;border:1px solid #ffffff20;background:#050712;color:#fff;outline:0}
+input:focus{border-color:#7c6cff;box-shadow:0 0 0 3px #7c6cff22}.choices{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+button{border:0;border-radius:15px;padding:13px 16px;color:#fff;background:#1c2337;cursor:pointer;transition:.18s;touch-action:manipulation}
+button:active{transform:scale(.96)}button.selected{background:#6858e8;box-shadow:0 0 20px #6858e855}
+.primary{width:100%;margin-top:16px;background:linear-gradient(135deg,#765cff,#b347ff);font-weight:bold;box-shadow:0 10px 30px #744dff33}.secondary{background:#20283c}
+.big{font-size:22px;padding:17px}.topbar,.touch-head{width:100%;display:flex;align-items:center;justify-content:space-between}.back{width:48px;height:48px;padding:0;font-size:26px}
+#nameInputs{display:grid;gap:10px}.name-row{display:flex;align-items:center;gap:8px}.name-row span{width:34px;text-align:center;font-weight:bold;color:#aeb7d4}
+.touch-area{position:relative;width:100%;height:min(58vh,500px);border-radius:30px;border:2px dashed #ffffff30;background:#ffffff08;display:flex;align-items:center;justify-content:center;overflow:hidden;user-select:none}
+.touch-message{text-align:center;color:#aeb7d4;pointer-events:none}.touch-point{position:absolute;width:64px;height:64px;border-radius:50%;transform:translate(-50%,-50%);background:#fff;box-shadow:0 0 0 8px #7c6cff33,0 0 35px #7c6cff;display:flex;align-items:center;justify-content:center;color:#111;font-weight:bold;animation:pop .2s}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(.3)}to{transform:translate(-50%,-50%) scale(1)}}
+#touchStatus{text-align:center;color:#cdd3e6}.winner-card{text-align:center}.crown{font-size:55px}.winner-card h1{color:#a997ff}.dot{font-size:60px;line-height:1;color:#ffda44;text-shadow:0 0 30px #ffda44}.challenge{margin:18px 0;padding:20px;border-radius:20px;background:#070a14;border:1px solid #ffffff15;font-size:20px;line-height:1.8}
+.result-actions{display:grid;gap:9px}.result-actions button{width:100%}.hint{text-align:center}
+footer{text-align:center;margin-top:auto;padding-top:15px;color:#7e88a5;font-size:12px}footer strong{display:block;color:#c5cbe0;font-size:13px;margin-top:4px}
+.shake{animation:shake .45s}.flash{animation:flash .7s}@keyframes shake{25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-5px)}}@keyframes flash{50%{box-shadow:0 0 80px #8b6cff}}
+@media(max-width:420px){#app{padding:12px 10px 24px}.card,.winner-card{padding:17px;border-radius:21px}.touch-area{height:52vh}.touch-point{width:56px;height:56px}}
+
+.round-choices{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.round-choices button.selected{background:#6858e8;box-shadow:0 0 20px #6858e855}
+.game-info{text-align:center;margin-top:12px;padding:10px;border-radius:12px;background:#ffffff08;color:#bfc7dc;font-size:13px}
+.answer-title{margin-top:12px;color:#cfd5e7;font-weight:bold}
+.answer-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.answer-buttons button{font-weight:bold;padding:16px 8px}
+.success{background:#087f5b}.fail{background:#8b2635}
+.round-points{margin:12px 0;padding:10px;border-radius:12px;background:#ffffff08;color:#ffd95a;font-weight:bold}
+#roundInfo{display:block;color:#aeb7d4;margin-top:4px}
+#finalBanner{text-align:center;margin:12px 0;padding:14px;border-radius:16px;background:#ffd34d18;color:#ffe37a;font-weight:bold}
+@media(max-width:420px){.round-choices{grid-template-columns:repeat(5,1fr)}.answer-buttons{grid-template-columns:1fr}}

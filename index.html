@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>اختيار الأصحاب</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg"><i></i><i></i><i></i><i></i><div class="grid"></div></div>
+
+<main id="app">
+  <section id="home" class="screen active">
+    <div class="brand">
+      <div class="logo">👆</div>
+      <h1>اختيار الأصحاب</h1>
+      <p>حطوا أصابعكم على الشاشة... والاختيار هيكون عشوائي!</p>
+    </div>
+
+    <div class="card">
+      <label>اسم المباراة</label>
+      <input id="matchName" maxlength="30" placeholder="مثلاً: مباراة الجمعة 🔥">
+      <label>عدد اللاعبين</label>
+      <div id="playerCount" class="choices">
+        <button data-count="2">2</button><button data-count="3">3</button>
+        <button data-count="4">4</button><button data-count="5" class="selected">5</button>
+      </div>
+      <label>عدد الجولات</label>
+      <div id="roundCount" class="round-choices">
+        <button data-rounds="5">5</button><button data-rounds="10">10</button>
+        <button data-rounds="15">15</button><button data-rounds="20">20</button><button data-rounds="25">25</button>
+      </div>
+      <div class="game-info">كل إجابة/تنفيذ صحيح = <b>10 نقاط</b> 🏆</div>
+      <button id="startBtn" class="primary">ابدأ المباراة 🚀</button>
+    </div>
+    <footer><span>مبرمج</span><strong>معاذ محمد عبد النبي</strong></footer>
+  </section>
+
+  <section id="players" class="screen">
+    <div class="topbar"><button class="back" data-back="home">←</button><h2 id="playersTitle">اللاعبون</h2></div>
+    <div class="card">
+      <p class="hint">اكتبوا أسماء اللاعبين، وبعدها اضغطوا ابدأ.</p>
+      <div id="nameInputs"></div>
+      <button id="readyBtn" class="primary">جاهزين! 🎮</button>
+    </div>
+  </section>
+
+  <section id="touch" class="screen">
+    <div class="touch-head">
+      <div><small id="touchMatch"></small><h2>حطوا الأصابع 👆</h2><small id="roundInfo"></small></div>
+      <button id="resetTouches" class="secondary">إعادة</button>
+    </div>
+    <div id="touchArea" class="touch-area">
+      <div class="touch-message">كل لاعب يحط إصبعه هنا<br><b>ومتشيلوش إيدكم!</b></div>
+    </div>
+    <button id="chooseBtn" class="primary big">اختار! 🎯</button>
+    <div id="touchStatus">الأصابع المسجلة: <b>0</b></div>
+  </section>
+
+  <section id="result" class="screen">
+    <div class="winner-card">
+      <div class="crown">👑</div><p>الاختيار وقع على</p>
+      <h1 id="winnerName">—</h1>
+      <div class="dot">●</div>
+      <h2 id="challengeType">حكم الجولة</h2>
+      <div class="challenge" id="challengeText">—</div>
+      <div class="answer-title">هل اللاعب أجاب/نفّذ؟</div>
+      <div class="answer-buttons">
+        <button id="successBtn" class="success">✅ أجاب / نفّذ</button>
+        <button id="failBtn" class="fail">❌ لم يجب / لم ينفذ</button>
+      </div>
+      <div id="roundPoints" class="round-points">الجولة = 0 نقاط</div>
+      <div class="result-actions">
+        <button id="newChallengeBtn" class="secondary">حكم/سؤال آخر 🔄</button>
+        <button id="nextRoundBtn" class="primary">الجولة التالية 👆</button>
+        <button id="scoreBtn" class="secondary">🏆 النتائج الآن</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="score" class="screen">
+    <div class="topbar"><button class="back" data-back="home">←</button><h2>النتائج</h2></div>
+    <div class="card">
+      <h3 id="scoreMatch"></h3>
+      <div id="finalBanner"></div>
+      <div id="scoreList"></div>
+      <button id="playAgain" class="primary">العبوا تاني 🔥</button>
+    </div>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
